@@ -1,0 +1,28 @@
+{% extends 'indexpage/base.html' %}
+
+{% load static %}
+{% block title %}
+  {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
+{% endblock %}
+{% block content %}
+
+  <div id="main" class="product_list col-sm-9">
+    <h1>Goods</h1>
+    <div class="items row">
+      {% for product in products %}
+        <div class="item col-sm-4">
+            <h3><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h3>
+          {{ product.price }} USD<br>
+
+          <form action="{% url "cart:cart_add" product.id %}" method='post'>
+          {{ cart_product_form }}
+          {% csrf_token %}
+          <input type="submit" value="add to cart">
+          </form>
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}</code>
+</pre>

@@ -1,0 +1,25 @@
+{% extends 'indexpage/base.html' %}
+
+{% load static %}
+{% block title %}
+  {{ product.name }}
+{% endblock %}
+{% block content %}
+  <div class="product-detail">
+
+    <div class="col-sm-8">
+      <h1>{{ product.title }}</h1>
+      <p class="price">
+        {{ product.price }} USD
+      </p>
+      <span>
+        {{ product.description }}
+      </span>
+      <form action="{% url "cart:cart_add" product.id %}" method='post'>
+      {{ cart_product_form }}
+      {% csrf_token %}
+      <input type="submit" value="add to cart">
+      </form>
+    </div>
+  </div>
+{% endblock %}

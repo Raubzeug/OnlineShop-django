@@ -1,0 +1,51 @@
+{% extends 'cart/base.html' %}
+
+{% block title %}
+Your shopping cart
+{% endblock %}
+
+{% block content %}
+  <h1>Your shopping cart</h1>
+  <table class="cart">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Delete<br>from cart</th>
+        <th>Price</th>
+        <th>Full price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart %}
+        {% with product=item.product %}
+          <tr>
+            <td>
+              <a href="{{ product.get_absolute_url }}">
+                {{ product.title }}
+              </a>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td><a href="{% url "cart:cart_remove" product.id %}">Delete</a></td>
+            <td class="num">{{ item.price }} USD</td>
+            <td class="num">{{ item.total_price }} USD</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+        <tr class="total">
+          <td>Total</td>
+          <td colspan="3"></td>
+          <td class="num">{{ cart.get_total_price }} USD</td>
+        </tr>
+    </tbody>
+  </table><br>
+  <p>
+    <a href="{% url "indexpage:product_list" %}">Continue Shopping</a>
+  </p>
+  <p>
+    <a href="#">Place order</a>
+  </p>
+  <p>
+    <a href="{% url "cart:cart_clear" %}">Clear shopping cart</a>
+  </p>
+{% endblock %}
