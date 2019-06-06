@@ -5,7 +5,7 @@ from cart.forms import CartAddProductForm
 
 
 class IndexPageView(View):
-    template_name = 'indexpage/index.html'
+    template_name = 'catalog_app/index.html'
 
     def get(self, request):
         products = Product.objects.all()
@@ -18,7 +18,7 @@ class IndexPageView(View):
 
 
 class ProductPageView(View):
-    template_name = 'indexpage/product_page.html'
+    template_name = 'catalog_app/product_page.html'
 
     def get(self, request, id):
         product = get_object_or_404(Product, id=id)

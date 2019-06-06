@@ -13,10 +13,10 @@ class Product(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
     price = models.IntegerField()
-    type = models.ForeignKey(Category, on_delete=True)
+    type = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f'{self.type}: {self.title}'
 
     def get_absolute_url(self):
-          return reverse('indexpage:product_page', args=[self.id])
+          return reverse('catalog_app:product_page', args=[self.id])

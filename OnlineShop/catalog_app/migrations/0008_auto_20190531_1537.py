@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('indexpage', '0007_auto_20190530_1802'),
+        ('catalog_app', '0007_auto_20190530_1802'),
     ]
 
     operations = [
@@ -20,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='type',
-            field=models.ForeignKey(on_delete=False, to='indexpage.Category'),
+            field=models.ForeignKey(on_delete=False, to='catalog_app.Category'),
         ),
     ]

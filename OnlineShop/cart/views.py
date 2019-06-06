@@ -1,14 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View
-from indexpage.models import Product
+from catalog_app.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 
-# def cart_remove(request, product_id):
-#     cart = Cart(request)
-#     product = get_object_or_404(Product, id=product_id)
-#     cart.remove(product)
-#     return redirect('cart:cart_detail')
 
 class CartClear(View):
     def get(self, request):
@@ -16,8 +11,8 @@ class CartClear(View):
         cart.clear()
         return redirect('cart:cart_detail')
 
-class CartAdd(View):
 
+class CartAdd(View):
     def post(self, request, product_id):
         cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
@@ -29,7 +24,6 @@ class CartAdd(View):
 
 
 class CartRemove(View):
-
     def get(self, request, product_id):
         cart = Cart(request)
         product = get_object_or_404(Product, id=product_id)
